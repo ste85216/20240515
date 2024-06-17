@@ -1,7 +1,7 @@
 import 'dotenv/config'
 import linebot from 'linebot'
 import commandFE from './commands/fe.js'
-import commandTWGod from './commands/twgod.js'
+import command100design from './commands/100design.js'
 import commandUsd from './commands/usd.js'
 import { scheduleJob } from 'node-schedule'
 import * as usdtwd from './data/usdtwd.js'
@@ -64,7 +64,7 @@ bot.on('message', event => {
       })
     }
   } else if (event.message.type === 'location') {
-    commandTWGod(event)
+    command100design(event)
   }
 })
 
