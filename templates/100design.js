@@ -8,13 +8,13 @@ export default () => {
         {
           type: 'image',
           url: 'https://cp4.100.com.tw/images/topics/202105/28/admin_30_1622166212_Y9mM4YoiWa.jpg!t1000.jpg',
-          size: 'md'
+          size: '500px'
         },
         {
           type: 'text',
           text: '裝潢預算怎麼抓?',
           weight: 'bold',
-          size: 'xxl'
+          size: 'lg'
         },
         {
           type: 'box',

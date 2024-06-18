@@ -1,16 +1,6 @@
 import 'dotenv/config'
 import linebot from 'linebot'
-import commandFE from './commands/fe.js'
 import command100design from './commands/100design.js'
-import commandUsd from './commands/usd.js'
-import { scheduleJob } from 'node-schedule'
-import * as usdtwd from './data/usdtwd.js'
-
-// https://crontab.guru/#0_5_*_*_*
-scheduleJob('0 5 * * *', () => {
-  usdtwd.update()
-})
-usdtwd.update()
 
 const bot = linebot({
   channelId: process.env.CHANNEL_ID,
@@ -23,48 +13,9 @@ bot.on('message', event => {
     console.log(event)
   }
   if (event.message.type === 'text') {
-    if (event.message.text === '前端') {
-      commandFE(event)
-    } else if (event.message.text === 'usd') {
-      commandUsd(event)
-    } else if (event.message.text === 'qr') {
-      event.reply({
-        type: 'text',
-        text: '123',
-        quickReply: {
-          items: [
-            {
-              type: 'action',
-              action: {
-                type: 'message',
-                // 按下去使用者會傳送出的文字
-                text: 'ubike:taipei',
-                // 按鈕文字
-                label: 'taipei'
-              }
-            },
-            {
-              type: 'action',
-              action: {
-                type: 'uri',
-                uri: 'https://wdaweb.github.io',
-                label: '職訓'
-              }
-            },
-            {
-              type: 'action',
-              action: {
-                type: 'postback',
-                label: 'postback',
-                data: 'aaa'
-              }
-            }
-          ]
-        }
-      })
+    if (event.message.text === '本週熱門文章') {
+      command100design(event)
     }
-  } else if (event.message.type === 'location') {
-    command100design(event)
   }
 })
 
